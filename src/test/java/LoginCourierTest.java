@@ -1,5 +1,7 @@
 import builder.CourierBuilder;
 import com.github.javafaker.Faker;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +26,8 @@ public class LoginCourierTest extends BaseAPITest {
     }
 
     @Test
+    @DisplayName("Login courier success test")
+    @Description("Valid credentials login returns 200 and id")
     public void loginCourierSuccessTest() {
         CourierBuilder courier = new CourierBuilder.Builder()
                 .withLogin(LOGIN)
@@ -37,6 +41,8 @@ public class LoginCourierTest extends BaseAPITest {
     }
 
     @Test
+    @DisplayName("Login courier without password returns error test")
+    @Description("Missing password returns 400 error")
     public void loginCourierWithoutPasswordReturnsErrorTest() {
         CourierBuilder courier = new CourierBuilder.Builder()
                 .withLogin(LOGIN)
@@ -50,6 +56,8 @@ public class LoginCourierTest extends BaseAPITest {
     }
 
     @Test
+    @DisplayName("Login courier without login returns error test")
+    @Description("Missing login returns 400 error")
     public void loginCourierWithoutLoginReturnsErrorTest() {
         CourierBuilder courier = new CourierBuilder.Builder()
                 .withLogin("")
@@ -63,6 +71,8 @@ public class LoginCourierTest extends BaseAPITest {
     }
 
     @Test
+    @DisplayName("Impossible to login uncreated courier test")
+    @Description("Non-existent courier login returns 404 error")
     public void impossibleToLoginUncreatedCourierTest() {
         Faker faker = new Faker();
         CourierBuilder courier = new CourierBuilder.Builder()
@@ -77,6 +87,8 @@ public class LoginCourierTest extends BaseAPITest {
     }
 
     @Test
+    @DisplayName("Impossible to login courier with wrong login test")
+    @Description("Incorrect login returns 404 error")
     public void impossibleToLoginCourierWithWrongLoginTest() {
         CourierBuilder courier = new CourierBuilder.Builder()
                 .withLogin(LOGIN + "_test")
@@ -90,6 +102,8 @@ public class LoginCourierTest extends BaseAPITest {
     }
 
     @Test
+    @DisplayName("Impossible to login courier with wrong password test")
+    @Description("Incorrect password returns 404 error")
     public void impossibleToLoginCourierWithWrongPasswordTest() {
         CourierBuilder courier = new CourierBuilder.Builder()
                 .withLogin(LOGIN)

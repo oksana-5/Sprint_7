@@ -1,4 +1,6 @@
 import builder.OrderBuilder;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +32,9 @@ public class CreateOrderTest extends BaseAPITest {
     }
 
     @Test
-    public void createOrderWithColorTest() {
+    @DisplayName("Create order with different colors test")
+    @Description("Order creation with various color options returns 201 and track number")
+    public void createOrderWithDifferentColorsTest() {
         OrderBuilder order = new OrderBuilder.Builder()
                 .withFirstName("Harry")
                 .withLastName("Potter")

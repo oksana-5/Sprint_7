@@ -1,4 +1,6 @@
 import builder.CourierBuilder;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
 import org.junit.Test;
@@ -11,6 +13,8 @@ import static steps.CourierSteps.*;
 public class CreateCourierTest extends BaseAPITest {
 
     @Test
+    @DisplayName("Create courier success test")
+    @Description("Valid courier creation returns 201")
     public void createCourierSuccessTest() {
 
         CourierBuilder courier = new CourierBuilder.Builder()
@@ -26,6 +30,8 @@ public class CreateCourierTest extends BaseAPITest {
     }
 
     @Test
+    @DisplayName("Impossible to create two identical couriers test")
+    @Description("Duplicate login returns 409 conflict")
     public void impossibleToCreateTwoIdenticalCouriersTest() {
 
         CourierBuilder courier = new CourierBuilder.Builder()
@@ -43,7 +49,9 @@ public class CreateCourierTest extends BaseAPITest {
     }
 
     @Test
-    public void CreateCourierWithoutPasswordReturnsErrorTest() {
+    @DisplayName("Create courier without password returns error test")
+    @Description("Missing password returns 400 error")
+    public void createCourierWithoutPasswordReturnsErrorTest() {
         CourierBuilder courier = new CourierBuilder.Builder()
                 .withLogin(LOGIN)
                 .build();
@@ -55,7 +63,9 @@ public class CreateCourierTest extends BaseAPITest {
     }
 
     @Test
-    public void CreateCourierWithoutLoginReturnsErrorTest() {
+    @DisplayName("Create courier without login returns error test")
+    @Description("Missing login returns 400 error")
+    public void createCourierWithoutLoginReturnsErrorTest() {
         CourierBuilder courier = new CourierBuilder.Builder()
                 .withPassword(PASSWORD)
                 .build();
